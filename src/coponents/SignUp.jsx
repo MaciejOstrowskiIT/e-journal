@@ -34,6 +34,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const [email, setEmail] = React.useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -97,6 +99,10 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  error={email ? false : true}
+                  helperText={email ? false : "Wrong email"}
                 />
               </Grid>
               <Grid item xs={12}>
