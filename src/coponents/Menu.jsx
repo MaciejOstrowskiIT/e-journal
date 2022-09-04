@@ -4,6 +4,8 @@ import { LinkProps } from "@mui/material/Link";
 import { Button, ButtonGroup, createTheme } from "@mui/material";
 import App from "../App";
 import Box from "@mui/material/Box";
+import Skeleton from "@mui/material";
+import { Stack } from "@mui/system";
 
 const Menu = () => {
   return (
@@ -21,7 +23,7 @@ const Menu = () => {
               display: "flex",
               gap: "20px",
             }}
-            variant="contained"
+            variant=""
             aria-label="contained primary button group"
           >
             <NavLink to="/signin" style={{ textDecoration: "none" }}>
@@ -34,6 +36,9 @@ const Menu = () => {
             <NavLink to="/app" style={{ textDecoration: "none" }}>
               <Button variant="contained">App</Button>
             </NavLink>
+            <Stack>
+              <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+            </Stack>
           </ButtonGroup>
         </Box>
       </nav>
