@@ -3,8 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -12,6 +11,10 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { doLogin } from "../api/doLogin";
+import useCheckToken from "../hooks/useCheckToken";
+import { decodeToken } from "react-jwt";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -37,11 +40,27 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    // console.log({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
+    doLogin(data.get("email"), data.get("password"));
   };
+
+  // const navigate = useNavigate();
+  React.useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      const user = decodeToken(token);
+      if (!user) {
+        localStorage.removeItem("token");
+        // navigate("/login");
+      } else {
+      }
+    } else {
+      // navigate("/login");
+    }
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -86,10 +105,6 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
             />
             <Button
               type="submit"

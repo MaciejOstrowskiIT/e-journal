@@ -25,6 +25,10 @@ app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
 
+app.get("/hello", (req, res) => {
+  res.send("hello from API");
+});
+
 app.post("/api/login", async (req, res) => {
   const user = await User.findOne({
     email: req.body.email,

@@ -1,17 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import SignIn from "./coponents/SignIn";
-import SignUp from "./coponents/SignUp";
+import BasicRoute from "./routes/BasicRoute";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
-    {/* <SignIn /> */}
-    <SignUp />
+    <BasicRoute />
   </React.StrictMode>
 );
 
